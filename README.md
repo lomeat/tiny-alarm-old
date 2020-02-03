@@ -8,4 +8,4 @@ Cute alarm app (only web) in minimalistic design
 1. Choose your local music on your PC
 1. Start alarm
 
-![Main View](https://raw.githubusercontent.com/lomeat/tiny-alarm/master/readme-1.PNG)
+![Main View](https://raw.githubusercontent.com/lomeat/tiny-alarm/master/readme-1.png)
