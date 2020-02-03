@@ -1,12 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 
+import { FaTelegramPlane, FaGithub, FaEnvelope, FaVk } from "react-icons/fa";
+
 export const Footer = () => (
   <Wrapper>
-    <Icon>T</Icon>
-    <Icon>I</Icon>
-    <Icon>G</Icon>
-    <Icon>S</Icon>
+    <Link href="https://vk.com/lomeat">
+      <FaVk size={30} />
+    </Link>
+    <Link href="https://t.me/lomeat">
+      <FaTelegramPlane size={30} />
+    </Link>
+    <Link href="https://github.com/lomeat/tiny-alarm">
+      <FaGithub size={30} />
+    </Link>
+    <Link href="mailto:lom3at@gmail.com">
+      <FaEnvelope size={30} />
+    </Link>
   </Wrapper>
 );
 
@@ -19,7 +29,7 @@ const Wrapper = styled.div`
   z-index: 1;
 `;
 
-const Icon = styled.a`
+const Link = styled.a`
   font-family: Barlow Condensed, sans-serif;
   font-size: 30px;
   color: #ffe3e1;
