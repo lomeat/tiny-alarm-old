@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { func, string, bool, shape, instanceOf } from "prop-types";
 
-import { Button } from "../ui/button";
+import { Button } from "ui/button";
 
 export class Control extends React.Component {
   static propTypes = {

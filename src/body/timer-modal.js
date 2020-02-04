@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { number } from "prop-types";
 
-import { Button } from "../ui/button";
+import { Button } from "ui/button";
 
 export class TimerModal extends React.Component {
   static propTypes = {

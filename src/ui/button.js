@@ -19,10 +19,11 @@ const Wrapper = styled.div`
 const StyledButton = styled.button`
   background: transparent;
   padding: 15px 40px;
-  font-family: Barlow Condensed, sans-serif;
+  font-family: "Barlow Condensed", sans-serif;
   color: #ffe3e1;
   border: 7px solid #ffe3e1;
   font-size: 38px;
+  text-transform: uppercase;
   transition: 0.2s ease;
   outline: none;
   &:hover {

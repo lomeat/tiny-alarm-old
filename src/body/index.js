@@ -4,7 +4,6 @@ import styled from "styled-components";
 import { TimeSelectList } from "./time-select-list";
 import { Control } from "./control";
 import { TimerModal } from "./timer-modal";
-
 import { timeMock } from "../utils";
 import sample from "../music/Click me to browse music.mp3";
 
