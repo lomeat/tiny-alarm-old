@@ -39,7 +39,7 @@ export class TimerModal extends React.Component {
 const TimerWrapper = styled.div`
   width: 100vw;
   height: 100vh;
-  background: #5e221e;
+  background: #000000;
   position: absolute;
   display: flex;
   justify-content: center;
@@ -55,23 +55,23 @@ const Wrapper = styled.div`
   flex-direction: row;
   justify-content: center;
   font-size: 350px;
-  font-family: Barlow Condensed, sans-serif;
+  font-family: "Barlow Condensed", sans-serif;
   color: #ffe3e1;
   margin-bottom: 200px;
 `;
 
 const Value = styled.div`
-  color: #ffe3e1;
-  font-family: Barlow Condensed, sans-serif;
+  color: #bbb;
+  font-family: "Barlow Condensed", sans-serif;
   outline: none;
 `;
 
 const Seconds = styled.div`
-  color: #847676;
+  color: #222;
   font-size: 175px;
   align-self: flex-end;
   padding: 0 0 35px 10px;
-  font-family: Barlow Condensed, sans-serif;
+  font-family: "Barlow Condensed", sans-serif;
 `;
 
 const EmptySupportBlock = styled(Seconds)`
@@ -80,10 +80,8 @@ const EmptySupportBlock = styled(Seconds)`
 `;
 
 const Colon = styled.span`
+  color: #bbb;
   line-height: 350px;
-  &:hover {
-    cursor: pointer;
-  }
 `;
 
 const ButtonsWrapper = styled.div`

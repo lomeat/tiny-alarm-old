@@ -7,6 +7,7 @@ export const Button = props => (
   </Wrapper>
 );
 
+// TODO: Remove margin
 const Wrapper = styled.div`
   background: transparent;
   margin: 0 20px;
