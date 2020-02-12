@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { func, string, bool, shape, instanceOf } from "prop-types";
+import { func, string, bool, object } from "prop-types";
 
 import { Button } from "ui/button";
 
@@ -11,32 +11,43 @@ export class Control extends React.Component {
     stopMusic: func.isRequired,
     isMusicPlaying: bool.isRequired,
     updateAlarmStatus: func.isRequired,
-    audioRef: shape({
-      current: instanceOf(Element)
-    })
+    audioRef: object.isRequired,
+    uploadMusic: func.isRequired,
+    musicName: string
   };
 
   render() {
-    const musicName = this.props.music
-      .split("/")
-      .pop()
-      .split(".")[0];
+    const {
+      music,
+      playMusic,
+      stopMusic,
+      isMusicPlaying,
+      updateAlarmStatus,
+      audioRef,
+      uploadMusic,
+      musicName
+    } = this.props;
 
     return (
       <ControlWrapper>
         <ButtonsWrapper>
-          {this.props.isMusicPlaying ? (
-            <Button name="STOP MUSIC" handleClick={this.props.stopMusic} />
+          {isMusicPlaying ? (
+            <Button name="STOP MUSIC" handleClick={stopMusic} />
           ) : (
-            <Button name="PLAY MUSIC" handleClick={this.props.playMusic} />
+            <Button name="PLAY MUSIC" handleClick={playMusic} />
           )}
-          <Button
-            name="START ALARM"
-            handleClick={this.props.updateAlarmStatus}
-          />
+          <Button name="START ALARM" handleClick={updateAlarmStatus} />
         </ButtonsWrapper>
-        <MusicNameButton>{musicName}</MusicNameButton>
-        <audio ref={this.props.audioRef} src={this.props.music} />
+        <MusicNameButton>
+          {musicName}
+          <input
+            style={{ display: "none" }}
+            accept="audio/*"
+            type="file"
+            onChange={e => uploadMusic(e)}
+          />
+        </MusicNameButton>
+        <audio ref={audioRef} src={music} />
       </ControlWrapper>
     );
   }
@@ -56,7 +67,7 @@ const ButtonsWrapper = styled.div`
   transition: 0.2s ease;
 `;
 
-const MusicNameButton = styled.button`
+const MusicNameButton = styled.label`
   font-size: 40px;
   font-family: Barlow Condensed, sans-serif;
   color: #ffe3e1;

@@ -15,10 +15,28 @@ export class Body extends React.Component {
     isAlarmStart: false,
     isHourChoosing: false,
     isMinuteChoosing: false,
-    isMusicPlaying: false
+    isMusicPlaying: false,
+    musicName: "Click me to browse music"
   };
 
   audioRef = React.createRef();
+
+  uploadMusic = e => {
+    e.preventDefault();
+    this.stopMusic();
+
+    const musicURL = URL.createObjectURL(e.target.files[0]);
+    localStorage.setItem("music", musicURL);
+    this.setState({
+      isMusicPlaying: false,
+      music: musicURL,
+      musicName: e.target.files[0].name.split(".mp3")[0]
+    });
+
+    e.onend = () => {
+      URL.revokeObjectURL(e.target.src);
+    };
+  };
 
   updateTimeSelectState = str => {
     if (str === "hour") {
@@ -60,29 +78,38 @@ export class Body extends React.Component {
   };
 
   render() {
-    console.log(this.state);
+    const {
+      music,
+      minute,
+      hour,
+      isHourChoosing,
+      isMinuteChoosing,
+      isAlarmStart,
+      isMusicPlaying,
+      musicName
+    } = this.state;
+
+    console.log(musicName);
 
     return (
       <React.Fragment>
         <Alarm>
           <Value onClick={() => this.updateTimeSelectState("hour")}>
-            {this.state.hour < 10 ? "0" + this.state.hour : this.state.hour}
+            {hour < 10 ? "0" + hour : hour}
           </Value>
           <Colon>:</Colon>
           <Value onClick={() => this.updateTimeSelectState("minute")}>
-            {this.state.minute < 10
-              ? "0" + this.state.minute
-              : this.state.minute}
+            {minute < 10 ? "0" + minute : minute}
           </Value>
 
-          {this.state.isHourChoosing && (
+          {isHourChoosing && (
             <TimeSelectList
               timeType="hours"
               time={timeMock}
               handleItemClick={this.handleItemClick}
             />
           )}
-          {this.state.isMinuteChoosing && (
+          {isMinuteChoosing && (
             <TimeSelectList
               time={timeMock}
               timeType="minutes"
@@ -93,15 +120,17 @@ export class Body extends React.Component {
         <Control
           updateAlarmStatus={this.updateAlarmStatus}
           audioRef={el => (this.audioRef = el)}
-          isMusicPlaying={this.state.isMusicPlaying}
+          isMusicPlaying={isMusicPlaying}
           playMusic={this.playMusic}
           stopMusic={this.stopMusic}
-          music={this.state.music}
+          music={music}
+          musicName={musicName}
+          uploadMusic={this.uploadMusic}
         />
-        {this.state.isAlarmStart && (
+        {isAlarmStart && (
           <TimerModal
-            hour={this.state.hour}
-            minute={this.state.minute}
+            hour={hour}
+            minute={minute}
             updateAlarmStatus={this.updateAlarmStatus}
           />
         )}
